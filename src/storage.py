@@ -18,9 +18,22 @@ def cargar_usuarios():
     except json.JSONDecodeError:
         print("Error al decodificar el archivo JSON. Se devolverá un diccionario vacío.")
         return {}
+
+    usuarios = {}
     
     for user_id,info in  data.items():
         usuario = Usuario(
                 user_id=user_id,
                 nombre=info.get("nombre","Anonimo")
                 )
+        for nombre_habito, habito_data in info.get("habitos",{}).items():
+            
+            habito = Habito(nombre_habito)
+            
+            habito.creado = habito_data["creado"]
+            habito.checks = habito_data["checks"]
+            
+            usuario.habitos[nombre_habito] = habito
+        usuarios[user_id] = usuario
+    
+    return usuarios
