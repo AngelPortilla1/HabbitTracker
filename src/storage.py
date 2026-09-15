@@ -37,3 +37,25 @@ def cargar_usuarios():
         usuarios[user_id] = usuario
     
     return usuarios
+
+def guardar_usuarios(usuarios):
+    """
+        Convierte los objetos a diccionario plano y los escribe en JSON.
+        indent=2 hace el JSON legible. ensure_ascii=False permite tildes.
+        """
+    DATA_FILE.parent.mkdir(parents=True, exist_ok=True)
+    data = {}
+    
+    for user_id, usuario in usuarios.items():
+            data[user_id] = {
+            "nombre": usuario.nombre,
+            "habitos": {
+                    nombre: {
+                        "creado": habito.creado,
+                        "checks": habito.checks,
+                    }
+                for nombre, habito in usuario.habitos.items()
+                },
+            }
+    with open(DATA_FILE, "w", encoding="utf-8") as f:
+            json.dump(data, f, indent=2, ensure_ascii=False)
