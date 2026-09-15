@@ -62,10 +62,7 @@ def comando_hoy(usuario):
     print("")
     print("Hábitos de hoy (" + usuario.nombre + "): ")
     for nombre,habito in usuario.habitos.items():
-        if habito._____():
-            estado = "[X]"
-        else:
-            estado = "[ ]"
+        estado = "[X]" if habito.hecho_hoy() else "[ ]"
         print("  " + estado + " " + nombre)
 
 
@@ -76,7 +73,7 @@ def comando_streaks(usuario):
     print("")
     print("Streaks de hábitos (" + usuario.nombre + "): ")
     for nombre,habito in usuario.habitos.items():
-        streak = habito.calcular_streak()
+        streak = habito.streak()
         print(f"  {nombre}: {streak} días consecutivos")
         
         
@@ -86,7 +83,7 @@ def comando_listar(usuario):
             return
     print("")
     print("Todos tus habitos")
-    for nombre,habito in Usuario.habitos.items():
+    for nombre,habito in usuario.habitos.items():
         total = len(habito.checks)
         print(
               "-" + nombre +
@@ -104,7 +101,7 @@ def eliminar_habito(usuario):
         print("Aviso : nombre vacio")
         return
     
-    if usuario.eliminar(Habito):
+    if usuario.eliminar_habito(nombre):
         print("Listo. Habito '" + nombre.lower() + "' eliminado")
     else:
         print("Aviso: no se encontró ese hábito")
@@ -123,11 +120,11 @@ def main():
             comando_check(usuario)
         elif opcion == "3":
             comando_hoy(usuario)
-        elif opcion == "_____":
+        elif opcion == "4":
             comando_streaks(usuario)
-        elif opcion == "_____":
+        elif opcion == "5":
             comando_listar(usuario)
-        elif opcion == "_____":
+        elif opcion == "6":
             eliminar_habito(usuario)
         elif opcion == "0":
             guardar_usuarios(usuarios)

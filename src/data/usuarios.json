@@ -1,0 +1,17 @@
+{
+  "LOCAL": {
+    "nombre": "angel",
+    "habitos": {
+      "hacer deporte": {
+        "creado": "2026-09-14",
+        "checks": []
+      },
+      "correr": {
+        "creado": "2026-09-14",
+        "checks": [
+          "2026-09-14"
+        ]
+      }
+    }
+  }
+}
