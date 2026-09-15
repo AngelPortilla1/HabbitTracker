@@ -98,3 +98,5 @@ class Usuario:
                 "Marcado' " + nombre_limpio + " como hecho hoy. Streak: " + str(habito.streak()) + " dias"
             )
         return "Ya habias marcado " + nombre_limpio + " como hecho hoy. Streak: " + str(habito.streak()) + " dias"
+    
+    
