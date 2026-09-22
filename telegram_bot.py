@@ -179,6 +179,32 @@ async def eliminar(update, context):
         await update.message.reply_text("Aviso: no se encontro ese habito")
 
 
+async def stats(update, context):
+    """Comando /stats - muestra estadísticas de los habitos."""
+    usuario = _verificar_usuario(update)
+    if usuario is None:
+        await update.message.reply_text("Usa /start primero")
+        return
+
+    if not usuario.habitos:
+        await update.message.reply_text("No tienes habitos registrados.")
+        return
+
+    total_habitos = len(usuario.habitos)
+    total_checks = sum(len(habito.checks) for habito in usuario.habitos.values())
+    rachas_totales = sum(habito.streak() for habito in usuario.habitos.values())
+    mejor_racha = max((habito.streak() for habito in usuario.habitos.values()), default=0)
+
+    mensaje = (
+        "Estadísticas:\n"
+        f"  - Total de habitos: {total_habitos}\n"
+        f"  - Total de checks: {total_checks}\n"
+        f"  - Rachas totales: {rachas_totales}\n"
+        f"  - Mejor racha: {mejor_racha} dias"
+    )
+    await update.message.reply_text(mensaje)
+
+
 async def help_command(update, context):
     """Comando /help - muestra los comandos disponibles."""
     mensaje = (
@@ -216,6 +242,7 @@ def main():
     app.add_handler(CommandHandler("listar", listar))
     app.add_handler(CommandHandler("eliminar", eliminar))
     app.add_handler(CommandHandler("help", help_command))
+    app.add_handler(CommandHandler("stats", stats))
 
     print("Bot iniciado. Presiona Ctrl+C para detener.")
     app.run_polling()
