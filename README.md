@@ -19,7 +19,7 @@ La aplicación sigue una estructura simple basada en capas:
 - Lógica de dominio: clases `Usuario` y `Habito`.
 - Persistencia: lectura y escritura de datos en JSON.
 
-![Arquitectura de Habic Tracker](docs/architecture.svg)
+![Arquitectura de Habic Tracker](docs/architecture.drawio)
 
 ## Estructura del proyecto
 
