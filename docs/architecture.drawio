@@ -1,0 +1,55 @@
+<mxfile host="app.diagrams.net" modified="2026-09-25T00:00:00.000Z" agent="Mozilla/5.0" version="24.7.17">
+  <diagram id="habic-arch" name="Habic Tracker Architecture">
+    <mxGraphModel dx="1475" dy="881" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
+      <root>
+        <mxCell id="title"/>
+        <mxCell id="diagram-root" parent="title"/>
+
+        <mxCell id="usuarios" value="Usuario / Interfaz&#xa;Telegram o CLI" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dbeafe;strokeColor=#1d4ed8;strokeWidth=2;fontSize=16;fontStyle=1;" vertex="1" parent="diagram-root">
+          <mxGeometry x="40" y="120" width="220" height="180" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="handlers" value="Capa de aplicación&#xa;telegram_bot.py&#xa;Handlers / comandos&#xa;Validación de usuario" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e0f2fe;strokeColor=#0369a1;strokeWidth=2;fontSize=16;fontStyle=1;" vertex="1" parent="diagram-root">
+          <mxGeometry x="340" y="120" width="260" height="180" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="domain" value="Modelo de dominio&#xa;Usuario&#xa;Habito&#xa;Checks y streaks&#xa;src/models.py" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dcfce7;strokeColor=#16a34a;strokeWidth=2;fontSize=16;fontStyle=1;" vertex="1" parent="diagram-root">
+          <mxGeometry x="680" y="120" width="260" height="180" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="storage" value="Persistencia local&#xa;src/storage.py&#xa;Carga / guarda usuarios&#xa;src/data/usuarios.json" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fef3c7;strokeColor=#d97706;strokeWidth=2;fontSize=16;fontStyle=1;" vertex="1" parent="diagram-root">
+          <mxGeometry x="420" y="420" width="320" height="180" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="arrow1" value="Comandos" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;strokeColor=#334155;endArrow=block;endFill=1;fontSize=14;" edge="1" parent="diagram-root" source="usuarios" target="handlers">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="arrow2" value="Lógica" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;strokeColor=#334155;endArrow=block;endFill=1;fontSize=14;" edge="1" parent="diagram-root" source="handlers" target="domain">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="arrow3" value="Persistencia" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;strokeColor=#334155;endArrow=block;endFill=1;fontSize=14;" edge="1" parent="diagram-root" source="domain" target="storage">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="810" y="510"/>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+
+        <mxCell id="arrow4" value="Guardar / cargar" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;strokeColor=#334155;endArrow=block;endFill=1;fontSize=14;" edge="1" parent="diagram-root" source="storage" target="usuarios">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="420" y="510"/>
+              <mxPoint x="150" y="510"/>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+
+        <mxCell id="footer" value="Flujo principal: Usuario → Interfaz → Modelo → Persistencia → JSON local" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f1f5f9;strokeColor=#94a3b8;strokeWidth=1.5;fontSize=16;fontStyle=1;align=center;" vertex="1" parent="diagram-root">
+          <mxGeometry x="40" y="650" width="900" height="60" as="geometry"/>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
