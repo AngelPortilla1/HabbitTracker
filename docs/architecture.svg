@@ -1,0 +1,78 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="700" viewBox="0 0 1200 700" role="img" aria-labelledby="title desc">
+  <title id="title">Arquitectura de Habic Tracker</title>
+  <desc id="desc">Diagrama de la arquitectura del bot y la aplicación CLI para gestionar hábitos con persistencia en JSON.</desc>
+
+  <defs>
+    <linearGradient id="bg" x1="0" x2="1">
+      <stop offset="0%" stop-color="#f8fafc"/>
+      <stop offset="100%" stop-color="#e2e8f0"/>
+    </linearGradient>
+    <linearGradient id="panel" x1="0" x2="1">
+      <stop offset="0%" stop-color="#dbeafe"/>
+      <stop offset="100%" stop-color="#bfdbfe"/>
+    </linearGradient>
+    <linearGradient id="domain" x1="0" x2="1">
+      <stop offset="0%" stop-color="#dcfce7"/>
+      <stop offset="100%" stop-color="#bbf7d0"/>
+    </linearGradient>
+    <linearGradient id="storage" x1="0" x2="1">
+      <stop offset="0%" stop-color="#fef3c7"/>
+      <stop offset="100%" stop-color="#fde68a"/>
+    </linearGradient>
+    <marker id="arrow" markerWidth="10" markerHeight="8" refX="10" refY="4" orient="auto">
+      <path d="M0,0 L10,4 L0,8 z" fill="#334155"/>
+    </marker>
+    <style>
+      .title { font: 700 30px 'Segoe UI', Arial, sans-serif; fill: #0f172a; }
+      .label { font: 700 18px 'Segoe UI', Arial, sans-serif; fill: #0f172a; }
+      .small { font: 600 16px 'Segoe UI', Arial, sans-serif; fill: #334155; }
+      .box { stroke: #1e293b; stroke-width: 2; rx: 18; }
+      .arrow { stroke: #334155; stroke-width: 3; fill: none; marker-end: url(#arrow); }
+    </style>
+  </defs>
+
+  <rect width="1200" height="700" fill="url(#bg)"/>
+  <text x="600" y="60" text-anchor="middle" class="title">Arquitectura de Habic Tracker</text>
+
+  <rect x="60" y="130" width="240" height="180" fill="url(#panel)" class="box"/>
+  <text x="180" y="170" text-anchor="middle" class="label">Interfaz de usuario</text>
+  <text x="180" y="210" text-anchor="middle" class="small">Telegram</text>
+  <text x="180" y="240" text-anchor="middle" class="small">Bot /start, /agregar, /marcar</text>
+  <text x="180" y="270" text-anchor="middle" class="small">CLI local</text>
+  <text x="180" y="290" text-anchor="middle" class="small">src/app.py</text>
+
+  <rect x="360" y="130" width="250" height="180" fill="url(#panel)" class="box"/>
+  <text x="485" y="170" text-anchor="middle" class="label">Capa de aplicación</text>
+  <text x="485" y="210" text-anchor="middle" class="small">telegram_bot.py</text>
+  <text x="485" y="240" text-anchor="middle" class="small">Handlers y comandos</text>
+  <text x="485" y="270" text-anchor="middle" class="small">Validación de usuario</text>
+  <text x="485" y="290" text-anchor="middle" class="small">Guardado de estado</text>
+
+  <rect x="670" y="130" width="270" height="180" fill="url(#domain)" class="box"/>
+  <text x="805" y="170" text-anchor="middle" class="label">Modelo de dominio</text>
+  <text x="805" y="210" text-anchor="middle" class="small">Usuario</text>
+  <text x="805" y="240" text-anchor="middle" class="small">Habito</text>
+  <text x="805" y="270" text-anchor="middle" class="small">Rachas / checks</text>
+  <text x="805" y="290" text-anchor="middle" class="small">src/models.py</text>
+
+  <rect x="430" y="420" width="340" height="180" fill="url(#storage)" class="box"/>
+  <text x="600" y="460" text-anchor="middle" class="label">Persistencia local</text>
+  <text x="600" y="500" text-anchor="middle" class="small">src/storage.py</text>
+  <text x="600" y="530" text-anchor="middle" class="small">carga y guarda usuarios</text>
+  <text x="600" y="560" text-anchor="middle" class="small">src/data/usuarios.json</text>
+
+  <path class="arrow" d="M300 220 H360"/>
+  <path class="arrow" d="M610 220 H670"/>
+  <path class="arrow" d="M805 310 V420"/>
+  <path class="arrow" d="M670 510 H610"/>
+  <path class="arrow" d="M430 510 H300"/>
+
+  <text x="325" y="205" class="small">comandos</text>
+  <text x="640" y="205" class="small">lógica</text>
+  <text x="830" y="375" class="small" transform="rotate(-90 830 375)">persistencia</text>
+  <text x="612" y="420" class="small">JSON</text>
+  <text x="356" y="420" class="small">guardar</text>
+
+  <rect x="66" y="610" width="1068" height="48" fill="#e2e8f0" stroke="#94a3b8" stroke-width="1.5" rx="12"/>
+  <text x="600" y="640" text-anchor="middle" class="small">Flujo principal: Usuario → Interfaz → Modelo → Persistencia → JSON local</text>
+</svg>
